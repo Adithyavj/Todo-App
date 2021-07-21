@@ -9,14 +9,21 @@
 <div class="container">
     Add a ToDo...
     <br>
-    <input type="text" class="input-text" placeholder="Type a todo"/>
-    <button class="add-btn">Add Todo</button>
+    <input 
+    type="text" 
+    class="input-text" 
+    placeholder="Type a todo"
+    [(ngModel)]="todoValue" 
+    (keyup.enter)="addItem()"
+    />
+    <!-- (click) triggers click event (read documentation) -->
+    <button class="add-btn" (click)="addItem()" >Add Todo</button>
     <div class="list">
         <ul>
-            <li>
-                <input type="checkbox" name="isDone">
-                Task 1
-                <button class="btn">Delete</button>
+            <li *ngFor="let item of list">
+                <input type="checkbox" name="isDone" [(ngModel)]="item.isDone">
+                {{item.value}}
+                <button class="btn" (click)="deleteItem(item.id)">Delete</button>
             </li>
         </ul>
     </div>
